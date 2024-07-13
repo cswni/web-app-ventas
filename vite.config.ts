@@ -2,7 +2,6 @@ import path, { resolve } from 'path';
 
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import commonjs from 'vite-plugin-commonjs';
 
 const env = process.env;
 //Set a base route if deploying on github pages
@@ -14,7 +13,7 @@ export default defineConfig({
   root: './',
   //Add base route if deploying on production
   base: env.mode === 'production' ? '/web-app-ventas/' : '/',
-  plugins: [react(), commonjs()],
+  plugins: [react()],
 
   // Alias
   resolve: {
