@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import DataTable from 'react-data-table-component';
 import ModalComponent from '../components/ModalComponent.tsx';
 import EditarProductosComponent from './ProductosActions/EditarProductosComponent.tsx';
+import { API_URL, MODE } from '../constants';
 
 export type Producto = {
   id: number;
@@ -34,7 +35,7 @@ const ProductosPage = () => {
 
   // Fetch data from API
   useEffect(() => {
-    fetch('http://api.santarosadev.xyz/productos')
+    fetch(`${API_URL}/productos`)
       .then((res) => res.json())
       .then((data) => {
         setData(data);
@@ -55,15 +56,13 @@ const ProductosPage = () => {
   // Save changes
   const guardarCambios = () => {
     // Send data to API to save changes
-    fetch('http://api.santarosadev.xyz/productos/' + producto.id, {
+    fetch(`${API_URL}/productos/${producto.id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(producto)
-    }).then((res) => {
-      console.log('Producto actualizado', res);
-      // Close modal and update data in table destructuring the previous state in data and updating the product
+    }).then(() => {
       handleCloseModal();
       setData((prevData: Producto[]) => {
         const index = prevData.findIndex((p) => p.id === producto.id);
@@ -132,7 +131,7 @@ const ProductosPage = () => {
   return (
     <>
       <PageTitle
-        title={'Administración de productos'}
+        title={`Administración de productos ${MODE}`}
         subtitle={'Resumen general'}
         icon={'bx-package'}
       />
