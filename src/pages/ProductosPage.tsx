@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import DataTable from 'react-data-table-component';
 import ModalComponent from '../components/ModalComponent.tsx';
 import EditarProductosComponent from './ProductosActions/EditarProductosComponent.tsx';
-import { API_URL, MODE } from '../constants';
+import { API_URL } from '../constants';
 
 export type Producto = {
   id: number;
@@ -107,31 +107,29 @@ const ProductosPage = () => {
     {
       name: 'Acciones',
       cell: (row: Producto) => (
-        <>
-          <div className={'d-flex gap-2'}>
-            <button
-              data-bs-toggle="modal"
-              data-bs-target="#staticBackdrop"
-              onClick={editarCustomer(row)}
-              className="btn btn-sm btn-warning">
-              <i className="material-icons-outlined">edit</i>
-            </button>
-            <button
-              data-bs-toggle="modal"
-              data-bs-target="#staticBackdrop"
-              onClick={eliminarCustomer(row.id)}
-              className="btn btn-sm btn-danger">
-              <i className="material-icons-outlined">delete_forever</i>
-            </button>
-          </div>
-        </>
+        <div className={'d-flex gap-2'}>
+          <button
+            data-bs-toggle="modal"
+            data-bs-target="#staticBackdrop"
+            onClick={editarCustomer(row)}
+            className="btn btn-sm btn-warning">
+            <i className="material-icons-outlined">edit</i>
+          </button>
+          <button
+            data-bs-toggle="modal"
+            data-bs-target="#staticBackdrop"
+            onClick={eliminarCustomer(row.id)}
+            className="btn btn-sm btn-danger">
+            <i className="material-icons-outlined">delete_forever</i>
+          </button>
+        </div>
       )
     }
   ];
   return (
     <>
       <PageTitle
-        title={`Administración de productos ${MODE}`}
+        title={`Administración de productos`}
         subtitle={'Resumen general'}
         icon={'bx-package'}
       />
