@@ -1,11 +1,12 @@
-import MainLayout from './layout/MainLayout.tsx';
 import AppRouter from './AppRouter.tsx';
+import { AuthProvider } from './utils/AuthProvider.tsx';
 
 function App() {
   return (
-    <MainLayout>
+    <AuthProvider>
+      {' '}
       <AppRouter />
-    </MainLayout>
+    </AuthProvider>
   );
 }
 
