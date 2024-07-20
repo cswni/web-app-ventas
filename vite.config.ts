@@ -5,9 +5,8 @@ import react from '@vitejs/plugin-react';
 
 const env = process.env;
 //Set a base route if deploying on github pages
-env.mode = env.mode || 'production';
+env.mode = env.NODE_ENV || 'production';
 
-console.log('Environment: ', env.mode);
 // https://vitejs.dev/config/
 export default defineConfig({
   root: './',

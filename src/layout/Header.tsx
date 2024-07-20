@@ -1,6 +1,25 @@
 import avatar01 from '@images/avatars/01.png';
+import { useAuth } from '../utils/AuthProvider.tsx';
+import { jwtDecode, JwtPayload } from 'jwt-decode';
 
+interface UserDataToken extends JwtPayload {
+  email: string;
+  iat: number;
+  id: number;
+  name: string;
+}
 const Header = () => {
+  // Read the token from the context
+  const { token } = useAuth();
+
+  //Decryption of the token using bcrypt / jwt
+  const user = jwtDecode<UserDataToken>(token);
+
+  const { logout } = useAuth();
+
+  const handleLogout = () => {
+    logout();
+  };
   return (
     <header className="top-header">
       <nav className="navbar navbar-expand align-items-center gap-4">
@@ -49,28 +68,22 @@ const Header = () => {
                     height="90"
                     alt=""
                   />
-                  <h5 className="user-name mb-0 fw-bold">Hello, Jhon</h5>
+                  <h5 className="user-name mb-0 fw-bold">Hola, {user?.name}</h5>
                 </div>
               </a>
               <hr className="dropdown-divider" />
               <a className="dropdown-item d-flex align-items-center gap-2 py-2" href="#">
-                <i className="material-icons-outlined">person_outline</i>Profile
+                <i className="material-icons-outlined">person_outline</i>Mi perfil
               </a>
               <a className="dropdown-item d-flex align-items-center gap-2 py-2" href="#">
-                <i className="material-icons-outlined">local_bar</i>Setting
-              </a>
-              <a className="dropdown-item d-flex align-items-center gap-2 py-2" href="#">
-                <i className="material-icons-outlined">dashboard</i>Dashboard
-              </a>
-              <a className="dropdown-item d-flex align-items-center gap-2 py-2" href="#">
-                <i className="material-icons-outlined">account_balance</i>Earning
-              </a>
-              <a className="dropdown-item d-flex align-items-center gap-2 py-2" href="#">
-                <i className="material-icons-outlined">cloud_download</i>Downloads
+                <i className="material-icons-outlined">local_bar</i>Configuración
               </a>
               <hr className="dropdown-divider" />
-              <a className="dropdown-item d-flex align-items-center gap-2 py-2" href="#">
-                <i className="material-icons-outlined">power_settings_new</i>Logout
+              <a
+                className="dropdown-item d-flex align-items-center gap-2 py-2"
+                href="#"
+                onClick={handleLogout}>
+                <i className="material-icons-outlined">power_settings_new</i>Cerrar sesión
               </a>
             </div>
           </li>

@@ -20,7 +20,7 @@ const Aside = () => {
       <div className="sidebar-nav" data-simplebar="true">
         <ul className="metismenu" id="sidenav">
           <li>
-            <Link to={'/'}>
+            <Link to={'/home'}>
               <div className="parent-icon">
                 <i className="material-icons-outlined">home</i>
               </div>
