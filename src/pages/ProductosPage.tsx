@@ -35,7 +35,15 @@ const ProductosPage = () => {
 
   // Fetch data from API
   useEffect(() => {
-    fetch(`${API_URL}/productos`)
+    // Add Bearer token to fetch
+
+    fetch(`${API_URL}/productos`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('token')}`
+      }
+    })
       .then((res) => res.json())
       .then((data) => {
         setData(data);

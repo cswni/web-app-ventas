@@ -56,6 +56,10 @@ const Login = () => {
               <h4 className="fw-bold">Bienvenido</h4>
               <p className="mb-0">Ingrese los datos de su cuenta</p>
 
+              {emailError ? <div className="alert alert-danger">{emailError}</div> : <></>}
+
+              {passwordError ? <div className="alert alert-danger">{passwordError}</div> : <></>}
+
               <div className="form-body mt-4">
                 <form onSubmit={handleSubmit} className="row g-3">
                   <div className="col-12">
