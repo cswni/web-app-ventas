@@ -28,6 +28,7 @@ jobs:
         run: | 
           echo "VITE_MODE=production" > .env.production
           echo "VITE_API_URL=https://ventas-api.cperezni.com" >> .env.production
+          echo "VITE_BASENAME=/web-app-ventas/" >> .env.production
 
       - name: Install
         run: npm install
